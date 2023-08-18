@@ -1,0 +1,70 @@
+{% extends "base.html" %} {% block content %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+</head>
+<body>
+  
+
+
+
+<form method="POST" class="abc">
+  {% csrf_token %} {{ professor_form.as_p }}
+  <button type="submit" class="btn btn-primary">Submit</button>
+
+
+</form>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">id</th>
+      <th scope="col">First</th>
+      <th scope="col">Last</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for p in professor %}
+    <tr>
+      <th scope="row">{{p.id}}</th>
+      <td>{{p.name}}</td>
+      <td>{{p.student}}</td>
+      <td ><a
+
+        class="btn btn-danger"
+        href="{% url 'delete_professor' p.id %}"
+        >Delete
+      </a></td>
+      <td ><a
+
+
+
+        class="btn btn-danger"
+        href="{% url 'update_professor' p.id %}"
+        >Update
+      </a></td>
+    </tr>
+
+
+
+    {% endfor %}
+  </tbody>
+</table>
+
+
+
+
+{% endblock %}
+
+
+</body>
+</html>
+
+
+
+
